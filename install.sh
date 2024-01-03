@@ -10,13 +10,17 @@
 # ------------------------------------------------------------------------------
 # Constants
 # ------------------------------------------------------------------------------
+# names to be used in program
 NAME_BIG="TrueColors"
 NAME_SMALL="truecolors"
 
+# the binary file constants
 BIN_FILE=$NAME_SMALL
-BIN_DIR=~"~/.local/bin"
+BIN_DIR="$HOME/.local/bin"
+
+# the service name constants
 SVC_FILE="$NAME_SMALL.service"
-SVC_DIR=~"~/.config/systemd/user"
+SVC_DIR="$HOME/.config/systemd/user"
 
 # ------------------------------------------------------------------------------
 # Main
@@ -27,8 +31,8 @@ if [ $(id --user) -eq 0 ]; then
     exit 1
 fi
 
-# copy files
-echo "Installing $NAME_BIG..."
+# show user we are doing something
+echo "Installing $NAME_BIG ..."
 
 # make dst dirs
 mkdir -vp $BIN_DIR
@@ -41,12 +45,11 @@ cp -vf $SVC_FILE $SVC_DIR
 # make bin executable
 chmod +x $BIN_DIR/$BIN_FILE
 
-# let user know we are done
-echo "Installed $NAME_BIG ..."
-
 # reload and start service
 systemctl --user daemon-reload
 systemctl --user stop $SVC_FILE
 systemctl --user start $SVC_FILE
+
+echo "Install $NAME_BIG_ complete."
 
 # -)
