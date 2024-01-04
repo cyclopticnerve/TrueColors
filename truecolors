@@ -118,11 +118,11 @@ def init():
 
 
 # ------------------------------------------------------------------------------
-#
+# The function that waits for a color change
 # ------------------------------------------------------------------------------
 def run():
     """
-    docstring
+    The function that waits for a color change
     """
 
     # watch theme for change
@@ -139,11 +139,14 @@ def run():
 
 
 # ------------------------------------------------------------------------------
-# The function that waits for a color change
+# Write current theme to GTK4 style sheet
 # ------------------------------------------------------------------------------
 def write_theme(theme_name):
     """
-    The function that waits for a color change
+    Write current theme to GTK4 style sheet
+
+    Arguments:
+        theme_name: the current Yaru theme/accent color
     """
 
     # get theme name without 'dark' (and maybe without "gtk-theme")
