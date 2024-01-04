@@ -8,7 +8,8 @@
 # ------------------------------------------------------------------------------
 
 """
-docstring
+A script that coordinates Flatpaks GTK4 accent colors with the Ubuntu accent
+colors selected in the Settings panel.
 """
 
 # ------------------------------------------------------------------------------
@@ -22,13 +23,13 @@ import subprocess
 # TODO: on stop service, delete files and call
 # 'flatpak override --user --nofilesystem=xdg-config/gtk-4.0'
 
-# TODO: put this in readme:
+# TODO: uninstall:
 #!/bin/sh
-# echo "Uninstalling ..."
-# systemctl --user stop gesture_improvements_gesture_daemon.service
-# rm -v ~/.config/systemd/user/gesture_improvements_gesture_daemon.service
-# rm -v ~/.local/bin/gesture_improvements_gesture_daemon
-# echo "Uninstalled ..."
+# echo "Uninstalling truecolors..."
+# systemctl --user stop truecolors.service
+# rm -v ~/.config/systemd/user/truecolors.service
+# rm -v ~/.local/bin/truecolors
+# echo "Uninstalled truecolors..."
 
 # ------------------------------------------------------------------------------
 # Constants
@@ -78,23 +79,26 @@ DICT_COLORS = {
 
 
 # ------------------------------------------------------------------------------
-#
+# The main function of the program
 # ------------------------------------------------------------------------------
 def main():
     """
-    docstring
+    The main function of the program
     """
 
+    # call the one-time setup function
     init()
+
+    # call the function that waits for a color change
     run()
 
 
 # ------------------------------------------------------------------------------
-#
+# The one-time setup function
 # ------------------------------------------------------------------------------
 def init():
     """
-    docstring
+    The one-time setup function
     """
 
     # set up flatpaks to use gtk-4.0 gtk.css
@@ -135,11 +139,11 @@ def run():
 
 
 # ------------------------------------------------------------------------------
-#
+# The function that waits for a color change
 # ------------------------------------------------------------------------------
 def write_theme(theme_name):
     """
-    docstring
+    The function that waits for a color change
     """
 
     # get theme name without 'dark' (and maybe without "gtk-theme")
@@ -165,7 +169,7 @@ def write_theme(theme_name):
     file.write_text(
         f"@define-color accent_color {accent_color};\n"
         f"@define-color accent_bg_color {accent_bg_color};\n",
-        "utf8"
+        "utf8",
     )
 
 
